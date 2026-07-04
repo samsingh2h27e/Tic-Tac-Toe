@@ -5,18 +5,30 @@ import (
 	notification "Tic_Tac_toe/m/Notification"
 	rules "Tic_Tac_toe/m/Rules"
 	"container/list"
+	"fmt"
+	"log/slog"
 )
 
 type Game struct {
 	B model.Board
-	Deque list.List
+	Deque *list.List
 	Rule rules.Rules
 	Observers []notification.Observer
 	GameOver bool
 }
 
 func (g *Game) AddPlayers(p model.Player) {
-	g.Deque.PushBack(p)
+	slog.Info("Received player",
+		"id", p.Id,
+		"name", p.Name,
+		"player", p,
+	)
+
+	e := g.Deque.PushBack(p)
+	slog.Info("Stored",
+		"value", e.Value,
+		"type", fmt.Sprintf("%T", e.Value),
+	)
 }
 
 func (g *Game) MakeGameOver() {
@@ -24,6 +36,7 @@ func (g *Game) MakeGameOver() {
 }
 
 func (g *Game) GetCurrentPlayer() model.Player {
+	slog.Info("Entered in current player method")
 	player := g.Deque.Front()
 	g.Deque.Remove(player)
 	return player.Value.(model.Player)

@@ -12,7 +12,7 @@ type Player struct {
 func (p *Player) Move() (int, int) {
 	var x int
 	var y int
-	fmt.Println("Player: "+ p.Name + "enter row and column:")
+	fmt.Println("Player: "+ p.Name + " enter row and column:")
 	fmt.Scan(&x,&y)
 	return x,y
 }

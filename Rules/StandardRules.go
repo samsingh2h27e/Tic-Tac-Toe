@@ -13,37 +13,61 @@ func (sr *StandardRules) IsValidMove(board model.Board, row int, col int) bool {
 }
 func (sr *StandardRules) CheckWin(b model.Board, s model.Symbol) bool {
 	length := len(b.Grid)
+	cnt := 0
 	for i := 0; i < length; i++ {
-		if b.Grid[i][i] != s {
-			return false
+		if b.Grid[i][i] == s {
+			cnt++
 		}
 	}
+	if cnt == b.Size{
+		return true
+	}
+	cnt = 0
 	for i := 0; i < length; i++ {
-		if b.Grid[i][0] != s {
-			return false
+		if b.Grid[i][0] == s {
+			cnt++
 		} 
 	}
+	if cnt == b.Size{
+		return true
+	}
+	cnt = 0
 	for i := 0;i < length;i++ {
-		if b.Grid[0][i] != s {
-			return false
+		if b.Grid[0][i] == s {
+			cnt++
 		}
 	}
+	if cnt == b.Size{
+		return true
+	}
+	cnt = 0
 	for i := 0;i < length;i++ {
-		if b.Grid[2][i] != s {
-			return false
+		if b.Grid[2][i] == s {
+			cnt++
 		}
 	}
+	if cnt == b.Size{
+		return true
+	}
+	cnt = 0
 	for i := 0;i < length;i++ {
-		if b.Grid[i][2] != s {
-			return false
+		if b.Grid[i][2] == s {
+			cnt++
 		} 
 	}
+	if cnt == b.Size{
+		return true
+	}
+	cnt = 0
 	for i := 0;i<length;i++ {
-		if b.Grid[2-i][i] != s {
-			return false
+		if b.Grid[2-i][i] == s {
+			cnt++
 		}
 	}
-	return true
+	if cnt == b.Size{
+		return true
+	}
+	return false
 }
 func (sr *StandardRules) CheckDraw(b model.Board) bool {
 	length := len(b.Grid)
